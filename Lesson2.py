@@ -45,13 +45,24 @@ for n in range(2,21):
 print(f)
 
 
+# In[ ]:
+
+
+# Вариант решения с рекурсией
+def factorial(n):
+    if n == 0:
+        return 1
+    return n*factorial(n-1)
+print(factorial(20))
+
+
 # ## Задача C
 # Вычислите длину гипотенузы в прямоугольном треугольнике со сторонами 179 и 971.
 
 # In[ ]:
 
 
-(179**2 + 971**2)**.5
+(179**2 + 971**2)**(1/2)
 
 
 # ## Задача D
@@ -120,7 +131,16 @@ print((a**2 + b**2)**(1/2))
 a = int(input())
 b = int(input())
 c = int(input())
-print(max(a,max(b,c))) 
+if a >= b:
+    if a >= c:
+        print(a)
+    else:
+        print(c)
+else:
+    if b >= c:
+        print(b)
+    else:
+        print(c) 
 
 
 # ## Задача J
@@ -133,7 +153,7 @@ print(max(a,max(b,c)))
 a = int(input())
 b = int(input())
 c = int(input())
-print("YES" if (a+b+c) >= 2*max(a, max(b,c)) else "NO")
+print("YES" if (a+b+c) >= 2*max([a, b, c]) else "NO")
 
 
 # ## Задача K
@@ -174,7 +194,11 @@ print("YES" if y%4 == 0 and y%100 != 0 or y%400 == 0 else "NO")
 
 x1, y1 = (int(input()), int(input()))
 x2, y2 = (int(input()), int(input()))
-print("YES" if abs(x1 - x2) == 1 and abs(y1 - y2) == 2 or abs(x1 - x2) == 2 and abs(y1 - y2) == 1 else "NO")
+if min([x1,x2,y1,y2]) < 1 or max([x1,x2,y1,y2]) > 8:
+    print("Значение выходит за границы доски!")
+else:
+    horse_shift = (abs(x1-x2), abs(y1-y2))
+    print("YES" if horse_shift in [(2,1), (1,2)] else "NO")
 
 
 # In[ ]:
