@@ -65,7 +65,7 @@ print(b + " " + a)
 
 
 s = input()
-print(s[:s.find("h")] + s[s.rfind("h")+1:] if s[-1] != "h" else s[:s.find("h")])
+print(s[:s.find('h')] + s[s.rfind('h'):][1:])
 
 
 # ## Задача E
@@ -74,8 +74,7 @@ print(s[:s.find("h")] + s[s.rfind("h")+1:] if s[-1] != "h" else s[:s.find("h")])
 # In[ ]:
 
 
-l = [x for x in input().split(" ")]
-
+l = [int(x) for x in input().split(sep=' ')]
 for i in range(0, len(l)-1, 2):
     l[i], l[i+1] = l[i+1], l[i]
 print(l)
@@ -88,8 +87,6 @@ print(l)
 
 
 s = input()
-first = s.find("h")
-last = s.rfind("h")
 print(s[:s.find("h")+1] + s[s.rfind("h")-1:s.find("h"):-1] + s[s.rfind("h"):])
 
 
@@ -100,7 +97,7 @@ print(s[:s.find("h")+1] + s[s.rfind("h")-1:s.find("h"):-1] + s[s.rfind("h"):])
 
 
 s = input()
-print("".join(i + "*" for i in s)[:-1])
+print("".join(sub_s + "*" for sub_s in s)[:-1])
 
 
 # ## Задача H
@@ -109,8 +106,12 @@ print("".join(i + "*" for i in s)[:-1])
 # In[ ]:
 
 
+import numpy as np
+
 l = [x for x in input().split(" ")]
-l[l.index(max(l))], l[l.index(min(l))] = l[l.index(min(l))], l[l.index(max(l))]
+maximum = np.argmax(l)
+minimum = np.argmin(l)
+l[maximum], l[minimum] = l[minimum], l[maximum]
 print(l)
 
 
@@ -123,8 +124,7 @@ print(l)
 
 
 l = l = [x for x in input().split(" ")]
-s = set(l)
-print(len(s))
+print(len(set(l)))
 
 
 # ## Задача J
@@ -184,8 +184,16 @@ print(len(unique_words))
 
 a = [x for x in input().split(" ")]
 b = [x for x in input().split(" ")]
-# Не особо поняла из условия, что тут хотят. Возвращаю кол-во цветов, которые есть в обоих наборах.
-print(len(set(a)&set(b)))
+
+first, second = set(a), set(b)
+print("Есть в обоих наборах:")
+print(first&second, "Всего: " + str(len(first&second)))
+print("Есть в первом наборе:")
+print(first, "Всего: " + str(len(first)))
+print("Есть во втором наборе:")
+print(second, "Всего: " + str(len(second)))
+print("Есть хотя бы в одном наборе:")
+print(first.union(second), "Всего: " + str(len(first.union(second))))
 
 
 # ## Задача N
