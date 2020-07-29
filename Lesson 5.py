@@ -52,32 +52,28 @@ for num in input().strip().split():
 for num in input().strip().split():
     second.put(int(num))
 
-def game_move(first, second):
-    card1 = first.get()
-    card2 = second.get()
+def game_move(f, s):
+    card1 = f.get()
+    card2 = s.get()
     if card2 != 0 and card1 > card2 or card1 == 0 and card2 == 9:
-        first.put(card1)
-        first.put(card2)
+        f.put(card1)
+        f.put(card2)
     else:
-        second.put(card1)
-        second.put(card2)
-    return first, second
+        s.put(card1)
+        s.put(card2)
 
 moves = 0
-while True:
+while not first.empty() and not second.empty():
     game_move(first, second)
     moves += 1
-    if first.empty():
-        print("second")
-        print(moves)
-        break
-    if second.empty():
-        print("first")
-        print(moves)
-        break
     if moves >= 1000000:
         print("botva")
         break
+else:
+    if not first.empty():
+        print("first", moves, sep=" ")
+    elif not second.empty():
+        print("second", moves, sep=" ")
 
 
 # # Задачи к уроку 5
@@ -90,7 +86,7 @@ while True:
 
 
 def min4(a, b, c, d):
-    return(min(min(a,b),min(c,d)))
+    return(min([a,b,c,d]))
 
 a, b, c, d = int(input()), int(input()), int(input()), int(input())
 print(min4(a, b, c, d))
@@ -150,6 +146,24 @@ def IsPrime(n):
 print(IsPrime(int(input())))
 
 
+# In[ ]:
+
+
+import matplotlib.pyplot as plt
+import time
+from __main__ import IsPrime
+
+x_axis = [n for n in range(1, 1000, 5)]
+y_axis = []
+for x in x_axis:
+    t1 = time.time()
+    IsPrime(x)
+    t2 = time.time()
+    y_axis.append(t2-t1)
+
+plt.plot(x_axis, y_axis)
+
+
 # ## Задача E
 # По данным числам n и k ($0 \leq k \leq n$) вычислите $С^k_n$ . Для решения используйте рекуррентное соотношение $С^k_n = С_{n-1}^{k-1} + С_{n-1}^{k}$.
 # 
@@ -193,5 +207,5 @@ print(sum(int(input()), int(input())))
 # In[ ]:
 
 
-    
+
 
