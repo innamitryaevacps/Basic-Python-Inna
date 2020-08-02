@@ -31,7 +31,7 @@ from builtins import *
 # In[ ]:
 
 
-ls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ls = [x for x in range(1,11)]
 print(ls[::2])
 
 
@@ -55,7 +55,7 @@ print(s.count(" ")+1)
 
 s = input()
 a, b = s.split(" ")
-print(b + " " + a)
+print(" ".join((b, a)))
 
 
 # ## Задача D
@@ -169,8 +169,15 @@ print(*result)
 
 input_file = open("../mathematics_wiki.txt", 'r')
 
-words = input_file.readlines()[0].strip().split(" ")
-unique_words = set(words)
+lines = input_file.readlines()
+unique_words = set()
+for line in lines:
+    words = line.split(" ")
+    if not unique_words:
+        unique_words = set(words)
+    else:
+        unique_words = unique_words.union(set(words))
+
 print(len(unique_words))
 
 
@@ -210,6 +217,8 @@ print(first.union(second), "Всего: " + str(len(first.union(second))))
 # In[ ]:
 
 
+import copy
+
 n = int(input())
 everybody, somebody = set(), set()
 for i in range(n):
@@ -219,7 +228,7 @@ for i in range(n):
         langs.add(input())
     somebody = somebody.union(langs)
     if i == 0:
-        everybody = everybody.union(langs)
+        everybody = copy.deepcopy(langs)
     else:
         everybody = everybody.intersection(langs)
 
@@ -240,7 +249,14 @@ print(somebody)
 # Условие повторяет задачу L
 input_file = open("../mathematics_wiki.txt", 'r')
 
-words = input_file.readlines()[0].strip().split(" ")
-unique_words = set(words)
+lines = input_file.readlines()
+unique_words = set()
+for line in lines:
+    words = line.split(" ")
+    if not unique_words:
+        unique_words = set(words)
+    else:
+        unique_words = unique_words.union(set(words))
+
 print(len(unique_words))
 
