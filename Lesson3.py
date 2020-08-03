@@ -131,14 +131,14 @@ print("YES" if k <= n*m and (k%n == 0 or k%m == 0) else "NO")
 # In[ ]:
 
 
-a = int(input())
-b = int(input())
+a = float(input())
+b = float(input())
 if a == 0:
     if b == 0:
         print("INF")
     else:
         print("NO")
-print("{:.2f}".format(-b/a))
+print("%.2f" % (-b/a))
 
 
 # ## Задача H
@@ -206,17 +206,16 @@ get_ipython().run_line_magic('timeit', 'nums[vfunc(nums)]')
 #SciPy optimization
 import time
 import numpy as np
-import scipy
+from scipy import optimize
 
 a, b, c, d = int(input()), int(input()), int(input()), int(input())
 
 def cubic_func(x):
     return a*(x**3) + b*(x**2) + c*x + d
 
-vfunc = np.vectorize(cubic_func)
-
-opt_func = scipy.optimize.root(vfunc, [0])
+opt_func = scipy.optimize.root(cubic_func, nums, method = 'lm')
 opt_func.x
+print(set(opt_func.x))
 get_ipython().run_line_magic('timeit', 'opt_func')
 
 
