@@ -132,7 +132,7 @@ print(power(int(input()),int(input())))
 # 
 # Решение оформите в виде функции IsPrime(n), которая возвращает True для простых чисел и False для составных чисел. Решение должно иметь сложность O($\sqrt{n}$).
 
-# In[ ]:
+# In[3]:
 
 
 def IsPrime(n):
@@ -146,12 +146,11 @@ def IsPrime(n):
 print(IsPrime(int(input())))
 
 
-# In[ ]:
+# In[4]:
 
 
 import matplotlib.pyplot as plt
 import time
-from __main__ import IsPrime
 
 x_axis = [n for n in range(1, 1000, 5)]
 y_axis = []
